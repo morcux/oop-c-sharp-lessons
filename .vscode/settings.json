@@ -1,0 +1,29 @@
+{
+  "dotnet.defaultSolution": "RyzanovaBackend/RyzanovaBackend.slnx",
+
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
+    }
+  },
+
+  "dotnet.backgroundAnalysis.analyzerDiagnosticsScope": "fullSolution",
+  "dotnet.backgroundAnalysis.compilerDiagnosticsScope": "fullSolution",
+  "dotnet.formatting.organizeImportsOnFormat": true,
+  "dotnet.inlayHints.enableInlayHintsForParameters": false,
+  "csharp.inlayHints.enableInlayHintsForTypes": false,
+
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true
+  }
+}

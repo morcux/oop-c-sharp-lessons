@@ -1,0 +1,68 @@
+@Api_HostAddress = http://localhost:5295
+
+### Themes
+
+GET {{Api_HostAddress}}/api/v1/themes?limit=10&offset=0
+Accept: application/json
+
+###
+
+POST {{Api_HostAddress}}/api/v1/themes
+Content-Type: application/json
+
+{
+  "name": "C# Basics",
+  "slug": "csharp-basics",
+  "description": "Intro course",
+  "type": "Course",
+  "price": 100
+}
+
+###
+
+GET {{Api_HostAddress}}/api/v1/themes/slug/csharp-basics
+Accept: application/json
+
+### Videos
+
+GET {{Api_HostAddress}}/api/v1/videos?limit=10&offset=0
+Accept: application/json
+
+###
+
+POST {{Api_HostAddress}}/api/v1/videos
+Content-Type: application/json
+
+{
+  "title": "Lesson 1",
+  "url": "https://example.com/video1",
+  "sequenceNumber": 1,
+  "themeId": "00000000-0000-0000-0000-000000000000"
+}
+
+###
+
+GET {{Api_HostAddress}}/api/v1/videos/theme/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+###
+
+GET {{Api_HostAddress}}/api/v1/videos/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+###
+
+PUT {{Api_HostAddress}}/api/v1/videos/00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+
+{
+  "title": "Lesson 1 (updated)",
+  "url": "https://example.com/video1",
+  "sequenceNumber": 1
+}
+
+###
+
+DELETE {{Api_HostAddress}}/api/v1/videos/00000000-0000-0000-0000-000000000000
+
+###
