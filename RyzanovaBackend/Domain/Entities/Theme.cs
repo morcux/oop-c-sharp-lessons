@@ -60,4 +60,15 @@ public class Theme : BaseEntity
         UpdatedAt = DateTime.UtcNow;
     }
 
+    private readonly List<Payment> _payments = [];
+
+    public IReadOnlyCollection<Payment> Payments => _payments.AsReadOnly();
+
+    public void AddPayment(Payment payment)
+    {
+        _payments.Add(payment);
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+
 }

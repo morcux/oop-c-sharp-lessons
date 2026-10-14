@@ -9,10 +9,12 @@ namespace Api.Controllers;
 public class ThemesController : ControllerBase
 {
     private readonly ThemeService _themeService;
+    private readonly PaymentService _paymentService;
 
-    public ThemesController(ThemeService themeService)
+    public ThemesController(ThemeService themeService, PaymentService paymentService)
     {
         _themeService = themeService;
+        _paymentService = paymentService;
     }
 
     [HttpGet]
@@ -33,6 +35,13 @@ public class ThemesController : ControllerBase
     {
         var theme = await _themeService.GetThemeBySlugAsync(slug);
         return theme == null ? (ActionResult<ThemeResponse>)NotFound(new { message = "Theme not found" }) : (ActionResult<ThemeResponse>)Ok(theme);
+    }
+
+    [HttpGet("access/{paymentId:guid}")]
+    public async Task<ActionResult<ThemeResponse>> GetByPayment(Guid paymentId)
+    {
+        var theme = await _paymentService.GetThemeByPaymentAsync(paymentId);
+        return Ok(theme);
     }
 
 }

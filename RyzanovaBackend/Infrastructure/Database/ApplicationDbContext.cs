@@ -8,6 +8,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Theme> Themes { get; set; } = null!;
     public DbSet<Video> Videos { get; set; } = null!;
     public DbSet<Photo> Photos { get; set; } = null!;
+    public DbSet<Payment> Payment { get; set; } = null!;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {

@@ -22,6 +22,39 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Entities.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("Pending");
+
+                    b.Property<Guid>("ThemeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ThemeId");
+
+                    b.ToTable("payments", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Photo", b =>
                 {
                     b.Property<Guid>("Id")
@@ -133,6 +166,17 @@ namespace Infrastructure.Migrations
                     b.ToTable("videos", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Payment", b =>
+                {
+                    b.HasOne("Domain.Entities.Theme", "Theme")
+                        .WithMany("Payments")
+                        .HasForeignKey("ThemeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Theme");
+                });
+
             modelBuilder.Entity("Domain.Entities.Photo", b =>
                 {
                     b.HasOne("Domain.Entities.Theme", "Theme")
@@ -157,6 +201,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Theme", b =>
                 {
+                    b.Navigation("Payments");
+
                     b.Navigation("Photos");
 
                     b.Navigation("Videos");
