@@ -7,5 +7,6 @@ public record ThemeResponse(
     string Description,
     string Type,
     int Price,
-    List<VideoResponse> Videos
+    List<VideoResponse> Videos,
+    List<PhotoResponse> Photos
 );

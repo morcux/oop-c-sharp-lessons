@@ -13,6 +13,8 @@ builder.Services.AddScoped<IThemeRepository, SqlThemeRepository>();
 builder.Services.AddScoped<ThemeService>();
 builder.Services.AddScoped<IVideoRepository, SqlVideoRepository>();
 builder.Services.AddScoped<VideoService>();
+builder.Services.AddScoped<IPhotoRepository, SqlPhotoRepository>();
+builder.Services.AddScoped<PhotoService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

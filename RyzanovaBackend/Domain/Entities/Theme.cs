@@ -49,4 +49,15 @@ public class Theme : BaseEntity
         _videos.Add(video);
         UpdatedAt = DateTime.UtcNow;
     }
+
+    private readonly List<Photo> _photos = [];
+
+    public IReadOnlyCollection<Photo> Photos => _photos.AsReadOnly();
+
+    public void AddPhoto(Photo photo)
+    {
+        _photos.Add(photo);
+        UpdatedAt = DateTime.UtcNow;
+    }
+
 }

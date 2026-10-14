@@ -22,6 +22,36 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Entities.Photo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("SequenceNumber")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("ThemeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ThemeId", "SequenceNumber")
+                        .IsUnique();
+
+                    b.ToTable("photos", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Theme", b =>
                 {
                     b.Property<Guid>("Id")
@@ -103,6 +133,17 @@ namespace Infrastructure.Migrations
                     b.ToTable("videos", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Photo", b =>
+                {
+                    b.HasOne("Domain.Entities.Theme", "Theme")
+                        .WithMany("Photos")
+                        .HasForeignKey("ThemeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Theme");
+                });
+
             modelBuilder.Entity("Domain.Entities.Video", b =>
                 {
                     b.HasOne("Domain.Entities.Theme", "Theme")
@@ -116,6 +157,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Theme", b =>
                 {
+                    b.Navigation("Photos");
+
                     b.Navigation("Videos");
                 });
 #pragma warning restore 612, 618

@@ -24,7 +24,9 @@ public class ThemeService
             t.Description,
             t.Type.ToString(),
             t.Price,
-            [.. t.Videos.Select(v => new VideoResponse(v.Id, v.Title, v.Url, v.SequenceNumber, v.ThemeId))]
+            [.. t.Videos.Select(v => new VideoResponse(v.Id, v.Title, v.Url, v.SequenceNumber, v.ThemeId))],
+            [.. t.Photos.Select(p => new PhotoResponse(p.Id, p.Url, p.SequenceNumber, p.ThemeId))]
+
         ))];
     }
 
@@ -40,7 +42,8 @@ public class ThemeService
             theme.Description,
             theme.Type.ToString(),
             theme.Price,
-            [.. theme.Videos.Select(v => new VideoResponse(v.Id, v.Title, v.Url, v.SequenceNumber, v.ThemeId))]
+            [.. theme.Videos.Select(v => new VideoResponse(v.Id, v.Title, v.Url, v.SequenceNumber, v.ThemeId))],
+            [.. theme.Photos.Select(p => new PhotoResponse(p.Id, p.Url, p.SequenceNumber, p.ThemeId))]
         );
     }
 
@@ -58,6 +61,7 @@ public class ThemeService
             theme.Description,
             theme.Type.ToString(),
             theme.Price,
+            [],
             []
         );
     }
